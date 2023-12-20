@@ -1,0 +1,471 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SudokuPuzzle
+</name>
+</assembly>
+<members>
+<member name="T:SudokuPuzzle.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SudokuPuzzle.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SudokuPuzzle.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingArena._root">
+ <summary>
+ Root node with row = 0 and column = 0, pointing to
+ column header list.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingArena._rows">
+ <summary>
+ Total number of rows in matrix. Does not play any role
+ during solving, just for info.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingArena._columns">
+ <summary>
+ Total number of columns in matrix. Does not play any role
+ during solving, just for info.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingArena._initial">
+ <summary>
+ Index of first solution row. Used when some solution
+ rows are given.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingArena._solutionRows">
+ <summary>
+ Array holding solution rows with doubly linked lists.
+ Array size is defined when creating new arena and
+ equals to number of primary columns.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingArena._headerColumns">
+ <summary>
+ Array for pointers to all column headers. Used for easier
+ scan over all the columns.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingArena._updates">
+ <summary>
+ Counter of node updates during solving. Used for evaluation
+ of algorithm speed and has no role in solving.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingArena.#ctor(System.Int32,System.Int32)">
+ <summary>
+ Create header with circular doubly linked list of
+ column headers for the matrix and root element
+ pointing to the leftmost and rightmost column header.
+ </summary>
+ <param name="primary">
+ Number of primary columns in matrix.
+ </param>
+ <param name="secondary">
+ Number of secondary columns in matrix.
+ </param>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingArena.#ctor(System.Int32)">
+ <summary>
+ Create header with circular doubly linked list of
+ column headers for the matrix and root element
+ pointing to the leftmost column header.
+ </summary>
+ <param name="columns">
+ Number of primary columns in matrix.
+ </param>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingArena.Root">
+ <summary>
+ Get root element.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingArena.FirstColumn">
+ <summary>
+ Get leftmost column header.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingArena.LastColumn">
+ <summary>
+ Get rightmost column header.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingArena.Rows">
+ <summary>
+ Return total number of rows in matrix.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingArena.Columns">
+ <summary>
+ Get total number of columns in matrix.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingArena.Updates">
+ <summary>
+ Get total number of updates, ie number of times program
+ covered or uncovered some node during solving.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingArena.CoverColumn(SudokuPuzzle.Controller.GameGenerator.DancingColumn)">
+ <summary>
+ Implements Knuth's algorithm for covering the column.
+ </summary>
+ <param name="column"></param>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingArena.UncoverColumn(SudokuPuzzle.Controller.GameGenerator.DancingColumn)">
+ <summary>
+ Implements Knuth's algorithm for uncovering the column.
+ </summary>
+ <param name="column"></param>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingArena.AddRow(System.Int32[])">
+ <summary>
+ Add row of circular doubly linked nodes defined with
+ their column positions.
+ </summary>
+ <param name="positions"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingArena.NextColumn">
+ <summary>
+ Select next column to cover. Finds column with minimum rows.
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingArena.SolveRecurse(System.Int32)">
+ <summary>
+ Implements Knuth's DLX algorithm.
+ </summary>
+ <param name="index"></param>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingArena.Solve">
+ <summary>
+ Start recursive solving with initial step.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingArena.RemoveKnown(Microsoft.VisualBasic.Collection)">
+ <summary>
+ Remove known rows (partial solution known or initial position).
+ Global counter of solution rows is used so partial adding of
+ solution rows is possible. Care should be taken not to add
+ the same solution row twice as space in solution rows array will
+ be ocupied and then all solutions will not fit into array
+ resulting in overflow.
+ </summary>
+ <param name="solutions"></param>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingArena.HandleSolution(SudokuPuzzle.Controller.GameGenerator.DancingNode[])">
+ <summary>
+ Childs of this class must implement algorithm for
+ handling result.
+ </summary>
+ <param name="rows"></param>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingArena.ShowState">
+ <summary>
+ For testing purpose only, shows all columns and nodes
+ with connections.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingColumn._rows">
+ <summary>
+ Counter of nodes in this column.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingColumn.#ctor(System.Int32)">
+ <summary>
+ Create self-referential node with row number 0.
+ </summary>
+ <param name="column"></param>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingColumn.Rows">
+ <summary>
+ Get number of nonzero rows in this column.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingColumn.IncRows">
+ <summary>
+ Increase number of rows for 1.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingColumn.DecRows">
+ <summary>
+ Decrease number of rows for 1.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingColumn.ToString">
+ <summary>
+ Return string with this node name and descriptors
+ with names of all neighbours and header and number
+ of rows in this column.
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingColumn.AddNode(SudokuPuzzle.Controller.GameGenerator.DancingNode)">
+ <summary>
+ Add new row node to the end of column. Sets links
+ of this node, previously last node and column
+ header to form circular list.
+ </summary>
+ <param name="node"></param>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingNode._left">
+ <summary>
+ Pointer to the left node.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingNode._right">
+ <summary>
+ Pointer to the right node.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingNode._upper">
+ <summary>
+ Pointer to the upper node.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingNode._lower">
+ <summary>
+ Pointer to the lower node.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingNode._header">
+ <summary>
+ Pointer to the column header.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingNode._row">
+ <summary>
+ Row number of this node. Only used for creating name,
+ has no role in solving.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:SudokuPuzzle.Controller.GameGenerator.DancingNode._column">
+ <summary>
+ Column number of this node. Only used for creating name,
+ has no role in solving.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingNode.#ctor(System.Int32,System.Int32)">
+ <summary>
+ Create self-referential node.
+ </summary>
+ <param name="row"></param>
+ <param name="column"></param>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingNode.Left">
+ <summary>
+ Get or set node being left to this node.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingNode.Right">
+ <summary>
+ Get or set node being right to this node.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingNode.Upper">
+ <summary>
+ Get or set node being upper to this node.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingNode.Lower">
+ <summary>
+ Get or set node being lower to this node.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingNode.Header">
+ <summary>
+ Get or set header node for this node.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingNode.Row">
+ <summary>
+ Get or set row number for this node.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.DancingNode.Column">
+ <summary>
+ Get or set column number for this node.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingNode.Verify(System.Int32,System.Int32)">
+ <summary>
+ For testing purpose only. Verifies weather node fits into
+ this row and this column.
+ </summary>
+ <param name="row"></param>
+ <param name="column"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingNode.Name(SudokuPuzzle.Controller.GameGenerator.DancingNode)">
+ <summary>
+ Return name of node in form "Row r#, column c#"
+ or "NULL" if node is not set.
+ </summary>
+ <param name="node"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingNode.Name">
+ <summary>
+ Return name of this node in form "Row r#, column c#"
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.DancingNode.ToString">
+ <summary>
+ Return string with this node name and descriptors
+ with names of all neighbour nodes and header.
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.SudokuArena.#ctor(System.Int32[0:,0:],System.Int32,System.Int32)">
+ <summary>
+ Create solver with given task matrix.
+ </summary>
+ <param name="puzzle">Task matrix.</param>
+ <param name="boxRows">Number of rows in box.</param>
+ <param name="boxCols">Number of columns in box.</param>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.SudokuArena.Size">
+ <summary>
+ Return size of puzzle, i.e. number of rows and columns
+ in puzzle.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.SudokuArena.StoreSolutions">
+ <summary>
+ Set or get way of storing solutions.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.SudokuArena.Solution">
+ <summary>
+ Return first solution found.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.SudokuArena.Solution(System.Int32)">
+ <summary>
+ Return i-th solution.
+ </summary>
+ <param name="index"></param>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:SudokuPuzzle.Controller.GameGenerator.SudokuArena.Solutions">
+ <summary>
+ Return number of solutions found.
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SudokuPuzzle.Controller.GameGenerator.SudokuArena.HandleSolution(SudokuPuzzle.Controller.GameGenerator.DancingNode[])">
+ <summary>
+ Create solution matrix.
+ </summary>
+ <param name="rows"></param>
+ <remarks></remarks>
+</member>
+</members>
+</doc>
